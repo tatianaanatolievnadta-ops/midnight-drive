@@ -7,14 +7,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Montserrat:wght@300;500;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--gold:#E9D29A;--ink:#000;--muted:#8b93ab}
+:root{--gold:#E9D29A;--ink:#000;--muted:#8b93ab;--neon:#5CE1FF}
 body{background:var(--ink);color:#fff;font-family:Montserrat,system-ui,sans-serif;overflow-x:hidden}
 nav{position:fixed;inset:0 0 auto;z-index:60;display:flex;justify-content:space-between;align-items:center;padding:22px 4vw;font:700 12px/1 Montserrat;letter-spacing:.32em}
-nav .links{display:flex;gap:28px;font-size:10px;letter-spacing:.22em;color:rgba(255,255,255,.7)}
+nav .links{display:flex;gap:22px;font-size:10px;letter-spacing:.22em;color:rgba(255,255,255,.7)}
 nav .links a{color:inherit;text-decoration:none}
 nav .cta{color:#fff;text-decoration:none;font-size:11px;letter-spacing:.2em;border:1px solid rgba(255,255,255,.45);padding:10px 18px;border-radius:999px;background:rgba(0,0,0,.35);backdrop-filter:blur(8px)}
 
-.drive{height:380vh;position:relative}
+.drive{height:340vh;position:relative}
 .stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#000}
 .layer{position:absolute;inset:0;background-size:cover;background-position:center 55%;transform:scale(1.12);will-change:transform,opacity}
 .layer.a{background-image:url('assets/hero-drive.jpg')}
@@ -36,7 +36,44 @@ canvas#bloom{position:absolute;inset:0;width:100%;height:100%;pointer-events:non
 .zones{position:absolute;left:4vw;bottom:9vh;z-index:5;font-size:11px;letter-spacing:.28em;line-height:2.15;color:#6f7690}
 .zones div{opacity:.22;transition:.4s}.zones .on{opacity:1;color:var(--gold);transform:translateX(6px)}
 
-.morph{height:420vh;position:relative;background:#000}
+/* NOTHING BETWEEN YOU AND THE ROAD */
+.road{height:280vh;position:relative;background:#000}
+.road-stage{position:sticky;top:0;height:100vh;overflow:hidden}
+.road-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.15);filter:brightness(.72)}
+.road-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),transparent 40%,rgba(0,0,0,.65))}
+.road-txt{position:absolute;left:4vw;right:4vw;bottom:12vh;z-index:3}
+.road-txt h2{font:800 clamp(28px,6vw,84px)/.95 Montserrat;letter-spacing:-.035em;text-transform:uppercase;position:relative}
+.road-txt .ghost{position:absolute;left:0;top:0;color:transparent;-webkit-text-stroke:1.5px var(--neon);text-stroke:1.5px var(--neon);opacity:0;transform:translate(8px,10px);filter:blur(.5px);pointer-events:none}
+.road-txt .solid{position:relative;color:#fff}
+.road-txt p{margin-top:18px;font:italic 22px 'Cormorant Garamond';color:var(--gold);opacity:.85}
+
+/* DOOR HANDLE */
+.door{height:260vh;position:relative;background:#000}
+.door-stage{position:sticky;top:0;height:100vh;overflow:hidden}
+.door-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.1)}
+.door-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.7),transparent 50%),linear-gradient(180deg,rgba(0,0,0,.25),transparent 40%,rgba(0,0,0,.55))}
+.door-ui{position:absolute;left:4vw;top:22vh;z-index:3;max-width:480px}
+.door-ui .chip{display:inline-block;padding:10px 16px;border:1px solid rgba(255,255,255,.55);font:700 11px Montserrat;letter-spacing:.28em;margin-bottom:28px}
+.door-ui h2{font:800 clamp(36px,6vw,88px)/.92 Montserrat;letter-spacing:-.04em;text-transform:uppercase}
+.door-ui p{margin-top:16px;color:var(--muted);font:300 15px/1.7 Montserrat}
+
+/* 3-CAR LINEUP → zoom into center */
+.lineup{height:320vh;position:relative;background:#000}
+.lineup-stage{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center}
+.lineup-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.05)}
+.lineup-shade{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 55%,transparent 20%,rgba(0,0,0,.55) 100%);z-index:2;pointer-events:none}
+.lineup-label{position:relative;z-index:3;text-align:center;font:800 clamp(28px,5vw,72px)/1 Montserrat;letter-spacing:-.03em;text-transform:uppercase;text-shadow:0 10px 40px #000}
+.lineup-label small{display:block;margin-top:14px;font:italic 22px 'Cormorant Garamond';color:var(--gold);letter-spacing:0;font-weight:400}
+
+/* WE HAND YOU THE CITY */
+.cityline{height:220vh;position:relative;background:#000}
+.cityline-stage{position:sticky;top:0;height:100vh;display:grid;place-items:center;text-align:center;padding:4vw;
+  background:radial-gradient(50% 45% at 50% 50%,rgba(92,225,255,.08),transparent 70%),#000}
+.cityline-stage h2{font:800 clamp(28px,5.5vw,72px)/1.15 Montserrat;letter-spacing:-.03em;max-width:1100px}
+.cityline-stage h2 .glow{color:var(--neon);text-shadow:0 0 40px rgba(92,225,255,.55),0 0 80px rgba(92,225,255,.25)}
+.cityline-stage p{margin-top:22px;font:italic 24px 'Cormorant Garamond';color:var(--gold)}
+
+.morph{height:400vh;position:relative;background:#000}
 .morph-stage{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:1fr 1.25fr;overflow:hidden}
 .morph-left{display:flex;flex-direction:column;justify-content:center;padding:10vh 4vw;position:relative;z-index:3}
 .morph-left .eyebrow{font-size:11px;letter-spacing:.35em;color:var(--gold);margin-bottom:22px}
@@ -63,28 +100,25 @@ canvas#bloom{position:absolute;inset:0;width:100%;height:100%;pointer-events:non
   .morph-left{padding:12vh 4vw 0;justify-content:flex-end}
 }
 
-/* CAMERA FLIES INTO THE CAR */
-.enter{height:520vh;position:relative;background:#000}
+.enter{height:480vh;position:relative;background:#000}
 .enter-stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#000}
 .enter-cam{position:absolute;inset:0;will-change:transform,filter}
-.enter-cam img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;will-change:opacity,transform}
+.enter-cam img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0}
 .enter-cam img.show{opacity:1}
-.enter-tunnel{position:absolute;inset:0;pointer-events:none;z-index:4;
-  background:radial-gradient(ellipse 80% 70% at 50% 48%,transparent 0%,transparent 42%,rgba(0,0,0,.55) 68%,#000 100%)}
+.enter-tunnel{position:absolute;inset:0;pointer-events:none;z-index:4}
 .enter-flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:5;pointer-events:none;mix-blend-mode:screen}
 .enter-ui{position:absolute;inset:0;z-index:6;display:flex;flex-direction:column;justify-content:flex-end;padding:8vh 4vw;pointer-events:none}
 .enter-ui .tag{font-size:11px;letter-spacing:.4em;color:var(--gold);margin-bottom:14px;opacity:0;transform:translateY(20px)}
 .enter-ui h2{font:800 clamp(36px,7vw,100px)/.9 Montserrat;letter-spacing:-.04em;text-transform:uppercase;max-width:900px;opacity:0;transform:translateY(40px)}
 .enter-ui p{margin-top:16px;font:italic clamp(18px,2vw,28px) 'Cormorant Garamond';color:var(--gold);opacity:0;transform:translateY(20px)}
 .enter-ui.visible .tag,.enter-ui.visible h2,.enter-ui.visible p{opacity:1;transform:none;transition:opacity .8s,transform .9s cubic-bezier(.16,1,.3,1)}
-.enter-ui.visible h2{transition-delay:.1s}
-.enter-ui.visible p{transition-delay:.2s}
+.enter-ui.visible h2{transition-delay:.1s}.enter-ui.visible p{transition-delay:.2s}
 .enter-hint{position:absolute;right:4vw;top:50%;transform:translateY(-50%);z-index:6;writing-mode:vertical-rl;font-size:10px;letter-spacing:.4em;color:rgba(255,255,255,.35)}
 
 .fan-wrap{padding:14vh 0 8vh;background:#000;overflow:hidden}
 .fan-wrap h2{padding:0 4vw;font:800 clamp(32px,5vw,72px)/1 Montserrat;letter-spacing:-.03em;margin-bottom:1rem}
 .fan-wrap h2 em{font:italic 400 1em 'Cormorant Garamond';color:var(--gold)}
-.fan-wrap .lead{padding:0 4vw;color:var(--muted);max-width:520px;font:300 15px/1.7 Montserrat;margin-bottom:6vh}
+.fan-wrap .lead{padding:0 4vw;color:var(--muted);max-width:560px;font:300 15px/1.7 Montserrat;margin-bottom:6vh}
 .fan{position:relative;height:62vh;perspective:1400px;cursor:grab;touch-action:pan-y}
 .fan:active{cursor:grabbing}
 .fan-track{position:absolute;inset:0;transform-style:preserve-3d}
@@ -93,9 +127,8 @@ canvas#bloom{position:absolute;inset:0;width:100%;height:100%;pointer-events:non
 .fan-card img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.85)}
 .fan-card .lab{position:absolute;left:0;right:0;bottom:0;padding:18px 16px;background:linear-gradient(transparent,rgba(0,0,0,.9));font:700 13px/1.2 Montserrat;letter-spacing:.08em}
 .fan-card .lab small{display:block;margin-top:6px;font:italic 15px 'Cormorant Garamond';color:var(--gold);font-weight:400;letter-spacing:0}
-.fan-hint{text-align:center;margin-top:28px;font-size:11px;letter-spacing:.28em;color:#5a6178}
+.fan-hint{text-align:center;margin-top:28px;font-size:11px;letter-spacing:.22em;color:#5a6178}
 
-/* END: manifesto + details */
 .manifesto{min-height:100vh;display:grid;grid-template-columns:1.1fr .9fr;gap:4vw;align-items:center;padding:16vh 4vw;background:#000;border-top:1px solid #14141c}
 .manifesto .words{font:800 clamp(22px,3.2vw,44px)/1.25 Montserrat;letter-spacing:-.02em;text-transform:uppercase}
 .manifesto .words span{display:inline;opacity:.18;transition:opacity .4s,color .4s}
@@ -131,7 +164,7 @@ canvas#bloom{position:absolute;inset:0;width:100%;height:100%;pointer-events:non
 <div class="grain"></div>
 <nav>
   <div>MIDNIGHT DRIVE</div>
-  <div class="links"><a href="#morph">FLEET</a><a href="#enter">ENTER</a><a href="#gallery">GALLERY</a></div>
+  <div class="links"><a href="#road">ROAD</a><a href="#morph">FLEET</a><a href="#enter">ENTER</a><a href="#gallery">GALLERY</a></div>
   <a class="cta" data-tl href="#">Забронировать</a>
 </nav>
 
@@ -156,6 +189,51 @@ canvas#bloom{position:absolute;inset:0;width:100%;height:100%;pointer-events:non
   </div>
 </section>
 
+<!-- NEW from reel: NOTHING BETWEEN YOU AND THE ROAD -->
+<section class="road" id="road">
+  <div class="road-stage">
+    <img src="assets/road-nothing.jpg" alt="" id="roadImg">
+    <div class="road-shade"></div>
+    <div class="road-txt">
+      <h2>
+        <span class="ghost" id="roadGhost">NOTHING BETWEEN YOU AND THE ROAD</span>
+        <span class="solid" id="roadSolid">NOTHING BETWEEN YOU AND THE ROAD</span>
+      </h2>
+      <p>ночь · город · только вы и асфальт</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEW from reel: door handle -->
+<section class="door" id="door">
+  <div class="door-stage">
+    <img src="assets/door-handle.jpg" alt="" id="doorImg">
+    <div class="door-shade"></div>
+    <div class="door-ui">
+      <div class="chip">LUXURY CARS</div>
+      <h2>OPEN<br>THE NIGHT.</h2>
+      <p>Рука на ручке — и сцена из ролика: дверь, браслет, свет салона.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEW from reel: 3-car lineup zoom -->
+<section class="lineup" id="lineup">
+  <div class="lineup-stage">
+    <img src="assets/fleet-lineup.jpg" alt="" id="lineupImg">
+    <div class="lineup-shade"></div>
+    <div class="lineup-label" id="lineupLabel">THE FLEET<small>три силуэта · камера к центру</small></div>
+  </div>
+</section>
+
+<!-- NEW from reel: We hand you the city -->
+<section class="cityline" id="cityline">
+  <div class="cityline-stage">
+    <h2>We don't rent cars.<br>We hand you the <span class="glow">city</span></h2>
+    <p>полный экран · как в референсе</p>
+  </div>
+</section>
+
 <section class="morph" id="morph">
   <div class="morph-stage">
     <div class="morph-left">
@@ -170,31 +248,30 @@ canvas#bloom{position:absolute;inset:0;width:100%;height:100%;pointer-events:non
   </div>
 </section>
 
-<!-- Camera flies into the car -->
 <section class="enter" id="enter">
   <div class="enter-stage">
     <div class="enter-cam" id="enterCam">
-      <img src="assets/fleet-sf90.jpg" alt="" data-phase="0" class="show" id="exImg">
-      <img src="assets/cabin-cockpit.jpg" alt="" data-phase="1" id="cabImg">
-      <img src="assets/cabin-wheel.jpg" alt="" data-phase="2" id="wheelImg">
-      <img src="assets/seat-waiting.jpg" alt="" data-phase="3" id="seatPhase">
+      <img src="assets/fleet-sf90.jpg" alt="" class="show" id="exImg">
+      <img src="assets/cabin-cockpit.jpg" alt="" id="cabImg">
+      <img src="assets/cabin-wheel.jpg" alt="" id="wheelImg">
+      <img src="assets/seat-waiting.jpg" alt="" id="seatPhase">
     </div>
     <div class="enter-tunnel" id="tunnel"></div>
     <div class="enter-flash" id="flash"></div>
-    <div class="enter-hint" id="enterHint">SCROLL INTO THE CABIN</div>
+    <div class="enter-hint">SCROLL INTO THE CABIN</div>
     <div class="enter-ui" id="enterUi">
       <div class="tag">INSIDE THE EXPERIENCE</div>
       <h2 id="enterTitle">YOUR SEAT<br>IS WAITING.</h2>
-      <p id="enterSub">камера залетает в салон — как в ролике</p>
+      <p id="enterSub">камера залетает в салон</p>
     </div>
   </div>
 </section>
 
 <section class="fan-wrap" id="gallery">
   <h2>Флот <em>веером</em></h2>
-  <p class="lead">Карточки по дуге: центр крупнее и ярче. Тяните или крутите колесо.</p>
+  <p class="lead">Тяните карточки в сторону. Колесо мыши по вертикали всегда ведёт страницу дальше — веер его не блокирует.</p>
   <div class="fan" id="fan"><div class="fan-track" id="fanTrack"></div></div>
-  <div class="fan-hint">DRAG · SCROLL</div>
+  <div class="fan-hint">ТЯНИТЕ В СТОРОНУ · КОЛЕСО = СКРОЛЛ СТРАНИЦЫ</div>
 </section>
 
 <section class="manifesto" id="manifesto">
@@ -238,15 +315,15 @@ canvas#bloom{position:absolute;inset:0;width:100%;height:100%;pointer-events:non
   const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
   const lerp=(a,b,t)=>a+(b-a)*t;
   const cars=[
-    {name:'GHOST', img:'assets/fleet-ghost.jpg', desc:'Купе · 2 места · ночной пакет. Студийный свет на лаке.', price:'от 45 000 ₽ / сутки'},
-    {name:'CHIRON', img:'assets/fleet-chiron.jpg', desc:'Гиперкар · шоу-лайт · туман и отражения.', price:'от 180 000 ₽ / сутки'},
-    {name:'911 GT', img:'assets/fleet-911.jpg', desc:'Трек-пакет · зеркальный пол · LED-панели.', price:'от 72 000 ₽ / сутки'},
-    {name:'SF90', img:'assets/fleet-sf90.jpg', desc:'Гибридный суперкар · красный в чёрном шоуруме.', price:'от 95 000 ₽ / сутки'},
-    {name:'ASTON', img:'assets/fleet-aston.jpg', desc:'GT · бирюзовый лак · атмосферный туман.', price:'от 68 000 ₽ / сутки'},
+    {name:'GHOST', img:'assets/fleet-ghost.jpg', desc:'Купе · 2 места · ночной пакет.', price:'от 45 000 ₽ / сутки'},
+    {name:'CHIRON', img:'assets/fleet-chiron.jpg', desc:'Гиперкар · шоу-лайт · туман.', price:'от 180 000 ₽ / сутки'},
+    {name:'911 GT', img:'assets/fleet-911.jpg', desc:'Трек-пакет · зеркальный пол.', price:'от 72 000 ₽ / сутки'},
+    {name:'SF90', img:'assets/fleet-sf90.jpg', desc:'Гибридный суперкар · красный акцент.', price:'от 95 000 ₽ / сутки'},
+    {name:'720S', img:'assets/fleet-720s.jpg', desc:'McLaren · оранжевый лак · студийный дым.', price:'от 88 000 ₽ / сутки'},
+    {name:'ASTON', img:'assets/fleet-aston.jpg', desc:'GT · бирюзовый лак · барные огни.', price:'от 68 000 ₽ / сутки'},
     {name:'MARINA', img:'assets/car5.jpg', desc:'Седан · 4 места · с водителем.', price:'от 38 000 ₽ / сутки'}
   ];
 
-  /* drive */
   const drive=document.getElementById('drive');
   const la=document.getElementById('la'), lb=document.getElementById('lb'), lc=document.getElementById('lc');
   const copy=document.getElementById('copy');
@@ -264,7 +341,7 @@ canvas#bloom{position:absolute;inset:0;width:100%;height:100%;pointer-events:non
   ];
   function resize(){W=bloom.width=innerWidth*DPR;H=bloom.height=innerHeight*DPR}
   resize(); addEventListener('resize',resize);
-  const orbs=Array.from({length:40},()=>({lane:(Math.random()*6-3)/3.2,z:Math.random(),warm:Math.random()<.62,size:.6+Math.random()*1.5,speed:.7+Math.random()*1.1}));
+  const orbs=Array.from({length:36},()=>({lane:(Math.random()*6-3)/3.2,z:Math.random(),warm:Math.random()<.62,size:.6+Math.random()*1.5,speed:.7+Math.random()*1.1}));
   function drawBloom(p,speed){
     bx.clearRect(0,0,W,H);
     const hz=H*.56,cx=W*.5;
@@ -312,9 +389,7 @@ canvas#bloom{position:absolute;inset:0;width:100%;height:100%;pointer-events:non
       imgEls.forEach((el,k)=>el.classList.toggle('on',k===i));
       descEl.textContent=cars[i].desc;
       priceEl.textContent=cars[i].price;
-      // sync enter exterior with current car
-      const ex=document.getElementById('exImg');
-      if(ex) ex.src=cars[i].img;
+      const ex=document.getElementById('exImg'); if(ex) ex.src=cars[i].img;
     }
     tickEls.forEach((b,k)=>{
       if(k<i) b.style.width='100%';
@@ -324,21 +399,15 @@ canvas#bloom{position:absolute;inset:0;width:100%;height:100%;pointer-events:non
   }
   descEl.textContent=cars[0].desc; priceEl.textContent=cars[0].price;
 
-  /* ENTER — camera fly into cabin */
+  /* enter cabin */
   const enter=document.getElementById('enter');
   const enterCam=document.getElementById('enterCam');
   const tunnel=document.getElementById('tunnel');
   const flash=document.getElementById('flash');
   const enterUi=document.getElementById('enterUi');
-  const enterHint=document.getElementById('enterHint');
   const enterTitle=document.getElementById('enterTitle');
   const enterSub=document.getElementById('enterSub');
-  const phaseImgs=[
-    document.getElementById('exImg'),
-    document.getElementById('cabImg'),
-    document.getElementById('wheelImg'),
-    document.getElementById('seatPhase')
-  ];
+  const phaseImgs=[document.getElementById('exImg'),document.getElementById('cabImg'),document.getElementById('wheelImg'),document.getElementById('seatPhase')];
   const enterCopy=[
     {t:'APPROACHING', s:'камера идёт к кузову'},
     {t:'THROUGH THE GLASS', s:'пролёт сквозь лобовое'},
@@ -351,54 +420,32 @@ canvas#bloom{position:absolute;inset:0;width:100%;height:100%;pointer-events:non
     if(ph!==lastPhase){
       lastPhase=ph;
       const C=enterCopy[ph];
-      enterTitle.innerHTML=C.t.replace(' IS ',' IS<br>');
+      enterTitle.innerHTML=C.t.includes('WAITING')?'YOUR SEAT<br>IS WAITING.':C.t;
       enterSub.textContent=C.s;
-      enterUi.classList.remove('visible');
-      void enterUi.offsetWidth;
-      if(ph>=1) enterUi.classList.add('visible');
+      enterUi.classList.toggle('visible', ph>=1);
     }
   }
   function updateEnter(p){
-    // 0-0.35: zoom into exterior (fly toward car)
-    // 0.30-0.45: flash + tunnel tight
-    // 0.40-0.65: cockpit
-    // 0.60-0.80: wheel
-    // 0.75-1: seat waiting
     let phase=0, local=0;
     if(p<.32){phase=0; local=p/.32}
     else if(p<.52){phase=1; local=(p-.32)/.2}
     else if(p<.74){phase=2; local=(p-.52)/.22}
     else {phase=3; local=(p-.74)/.26}
-
     setPhase(phase);
-
-    // dramatic scale toward windshield
     const zoom = phase===0 ? lerp(1.05, 3.4, Math.pow(local,1.35))
                : phase===1 ? lerp(1.15, 1.45, local)
                : phase===2 ? lerp(1.08, 1.35, local)
                : lerp(1.05, 1.2, local);
     const blur = phase===0 ? local*6 : phase===1 && local<.25 ? (1-local/.25)*4 : 0;
-    const bright = phase===0 ? lerp(1, .55, local) : 1;
     enterCam.style.transform=`scale(${zoom}) translate3d(0,${phase===0?local*-4:0}%,0)`;
-    enterCam.style.filter=`blur(${blur}px) brightness(${bright}) saturate(${1+local*.15})`;
-
-    // tunnel closes like entering glass
-    const hole = phase===0 ? lerp(85, 18, Math.pow(local,.9))
-               : phase===1 ? lerp(22, 70, local)
-               : 90;
+    enterCam.style.filter=`blur(${blur}px) brightness(${phase===0?lerp(1,.55,local):1})`;
+    const hole = phase===0 ? lerp(85, 18, Math.pow(local,.9)) : phase===1 ? lerp(22, 70, local) : 90;
     const dark = phase===0 ? lerp(.35, .95, local) : lerp(.7, .25, Math.min(1,local+.2));
     tunnel.style.background=`radial-gradient(ellipse ${hole}% ${hole*0.85}% at 50% 48%, transparent 0%, transparent ${Math.max(8,hole*0.35)}%, rgba(0,0,0,${dark*.7}) ${hole*0.75}%, #000 100%)`;
-
-    // white flash at glass breakthrough
-    const flashAmt = (p>.28 && p<.38) ? Math.sin(((p-.28)/.1)*Math.PI) * .55 : 0;
-    flash.style.opacity=String(flashAmt);
-
-    enterHint.style.opacity = String(clamp(1-p*3));
-    if(phase>=1) enterUi.classList.add('visible');
-    else enterUi.classList.remove('visible');
+    flash.style.opacity=String((p>.28&&p<.38)?Math.sin(((p-.28)/.1)*Math.PI)*.55:0);
   }
 
-  /* fan */
+  /* fan — never block vertical page scroll */
   const fanEl=document.getElementById('fan');
   const track=document.getElementById('fanTrack');
   cars.forEach(c=>{
@@ -432,9 +479,13 @@ canvas#bloom{position:absolute;inset:0;width:100%;height:100%;pointer-events:non
   });
   fanEl.addEventListener('pointerup',()=>dragging=false);
   fanEl.addEventListener('pointercancel',()=>dragging=false);
-  fanEl.addEventListener('wheel',e=>{e.preventDefault();fanVel+=e.deltaY*0.0015},{passive:false});
+  fanEl.addEventListener('wheel',e=>{
+    const horizontal=Math.abs(e.deltaX)>Math.abs(e.deltaY)||e.shiftKey;
+    if(!horizontal) return; // page scrolls freely
+    e.preventDefault();
+    fanVel+=(e.shiftKey?e.deltaY:e.deltaX)*0.002;
+  },{passive:false});
 
-  /* manifesto word scrub */
   const wordSpans=[...document.querySelectorAll('#words span')];
   const manSideImgs=[...document.querySelectorAll('#manSide img')];
   const details=[...document.querySelectorAll('.details .d')];
@@ -456,10 +507,20 @@ canvas#bloom{position:absolute;inset:0;width:100%;height:100%;pointer-events:non
     });
   }
 
+  const roadImg=document.getElementById('roadImg');
+  const roadGhost=document.getElementById('roadGhost');
+  const doorImg=document.getElementById('doorImg');
+  const lineupImg=document.getElementById('lineupImg');
+  const lineupLabel=document.getElementById('lineupLabel');
+
+  function scrub(el){
+    const r=el.getBoundingClientRect();
+    return clamp(-r.top/(r.height-innerHeight||1));
+  }
+
   function frame(){
     t+=.016;
-    const r=drive.getBoundingClientRect();
-    const raw=clamp(-r.top/(r.height-innerHeight||1));
+    const raw=scrub(drive);
     sp+=(raw-sp)*.085; const p=sp; const speed=.004+p*.028;
     la.style.transform=`scale(${1.12-p*.08}) translate3d(0,${p*-2}%,0)`;
     lb.style.transform=`scale(${1.14-p*.06}) translate3d(0,${p*-3}%,0)`;
@@ -472,21 +533,39 @@ canvas#bloom{position:absolute;inset:0;width:100%;height:100%;pointer-events:non
     zones.forEach(d=>d.classList.toggle('on',+d.dataset.i===zone));
     setTitle(zone);
 
-    const mr=morph.getBoundingClientRect();
-    const mp=clamp(-mr.top/(mr.height-innerHeight||1));
+    // ROAD — neon ghost offset grows
+    const rp=scrub(document.getElementById('road'));
+    roadImg.style.transform=`scale(${1.15-rp*.08}) translate3d(0,${rp*-4}%,0)`;
+    roadGhost.style.opacity=String(clamp(rp*1.4));
+    roadGhost.style.transform=`translate(${8+rp*18}px,${10+rp*14}px)`;
+
+    // DOOR — zoom into handle
+    const dp=scrub(document.getElementById('door'));
+    doorImg.style.transform=`scale(${1.1+dp*0.55}) translate3d(${dp*-4}%,${dp*2}%,0)`;
+
+    // LINEUP — zoom hard into center car
+    const lp=scrub(document.getElementById('lineup'));
+    lineupImg.style.transform=`scale(${1.05+lp*1.8}) translate3d(0,${lp*-6}%,0)`;
+    lineupImg.style.filter=`brightness(${lerp(.85,1.05,lp)})`;
+    lineupLabel.style.opacity=String(clamp(1-lp*1.4));
+    lineupLabel.style.transform=`scale(${1+lp*.3})`;
+
+    // CITYLINE glow pulse via scroll
+    const cp=scrub(document.getElementById('cityline'));
+    document.querySelector('.cityline-stage .glow').style.textShadow=
+      `0 0 ${30+cp*40}px rgba(92,225,255,.55),0 0 ${60+cp*60}px rgba(92,225,255,.3)`;
+
+    const mp=scrub(morph);
     const seg=mp*(cars.length-0.0001);
     setMorph(Math.floor(seg), seg-Math.floor(seg));
 
-    const er=enter.getBoundingClientRect();
-    const ep=clamp(-er.top/(er.height-innerHeight||1));
-    updateEnter(ep);
+    updateEnter(scrub(enter));
 
     if(!dragging){fanPos+=fanVel; fanVel*=0.92}
     while(fanPos<0)fanPos+=cars.length;
     while(fanPos>=cars.length)fanPos-=cars.length;
     layoutFan();
 
-    // manifesto
     const man=document.getElementById('manifesto');
     const manR=man.getBoundingClientRect();
     const manP=clamp((innerHeight*0.75-manR.top)/(innerHeight+manR.height*0.3));
@@ -497,8 +576,8 @@ canvas#bloom{position:absolute;inset:0;width:100%;height:100%;pointer-events:non
 
     const ctaBg=document.getElementById('ctaBg');
     const cta=document.querySelector('.cta').getBoundingClientRect();
-    const cp=clamp(1-cta.bottom/(cta.height+innerHeight));
-    ctaBg.style.transform=`scale(${1.1-cp*.08}) translateY(${cp*-3}%)`;
+    const ctp=clamp(1-cta.bottom/(cta.height+innerHeight));
+    ctaBg.style.transform=`scale(${1.1-ctp*.08}) translateY(${ctp*-3}%)`;
 
     animateStats();
     requestAnimationFrame(frame);
